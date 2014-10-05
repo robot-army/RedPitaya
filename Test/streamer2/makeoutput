@@ -1,0 +1,19 @@
+rm -f acquire *.o
+arm-linux-gnueabi-gcc -c -g -std=gnu99 -Wall -Werror -DVERSION=0.00-0000 -DREVISION=devbuild fpga_osc.c -o fpga_osc.o
+arm-linux-gnueabi-gcc -c -g -std=gnu99 -Wall -Werror -DVERSION=0.00-0000 -DREVISION=devbuild main_osc.c -o main_osc.o
+arm-linux-gnueabi-gcc -c -g -std=gnu99 -Wall -Werror -DVERSION=0.00-0000 -DREVISION=devbuild worker.c -o worker.o
+arm-linux-gnueabi-gcc -c -g -std=gnu99 -Wall -Werror -DVERSION=0.00-0000 -DREVISION=devbuild acquire.c -o acquire.o
+acquire.c: In function ‘main’:
+acquire.c:304:5: error: passing argument 1 of ‘sendto’ makes integer from pointer without a cast [-Werror]
+In file included from /usr/lib/gcc-cross/arm-linux-gnueabi/4.7/../../../../arm-linux-gnueabi/include/netinet/in.h:23:0,
+                 from /usr/lib/gcc-cross/arm-linux-gnueabi/4.7/../../../../arm-linux-gnueabi/include/arpa/inet.h:22,
+                 from acquire.c:28:
+/usr/lib/gcc-cross/arm-linux-gnueabi/4.7/../../../../arm-linux-gnueabi/include/sys/socket.h:163:16: note: expected ‘int’ but argument is of type ‘float **’
+acquire.c:304:5: error: passing argument 5 of ‘sendto’ from incompatible pointer type [-Werror]
+In file included from /usr/lib/gcc-cross/arm-linux-gnueabi/4.7/../../../../arm-linux-gnueabi/include/netinet/in.h:23:0,
+                 from /usr/lib/gcc-cross/arm-linux-gnueabi/4.7/../../../../arm-linux-gnueabi/include/arpa/inet.h:22,
+                 from acquire.c:28:
+/usr/lib/gcc-cross/arm-linux-gnueabi/4.7/../../../../arm-linux-gnueabi/include/sys/socket.h:163:16: note: expected ‘const struct sockaddr *’ but argument is of type ‘struct sockaddr_in *’
+acquire.c:261:10: error: unused variable ‘i’ [-Werror=unused-variable]
+cc1: all warnings being treated as errors
+make: *** [acquire.o] Error 1
